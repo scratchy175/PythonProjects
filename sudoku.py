@@ -151,5 +151,12 @@ print(verifier(grille_2))
 
 
 
+print("j'aime les zgeg")
+
+
+
+
+
+
 
 
