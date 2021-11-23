@@ -68,37 +68,29 @@ def afficher(x):
 
 
 def ligne(x, i):
-    if i < 1 or i > 9:
-        return "Veuillez rentrer un indice compris entre 1 et 9."
     return x[i-1]
 
 
 def unique(x):
-    tmp = []
+    tmp = set()
     for i in range(len(x)):
         if x[i] != 0:
             if x[i] not in tmp:
-                tmp.append(x[i])
+                tmp.add(x[i])
             else:
                 return False
     return True
 
 
-
 def colonne(x, i):
     col = []
-    if i < 1 or i > 9:
-        return "Veuillez rentrer un indice compris entre 1 et 9.46"
     for j in range(len(x)):
         col.append(x[j][i-1])
-
     return col
 
 
 def region(x, i):
     reg = []
-    if i < 1 or i > 9:
-        return "Veuillez rentrer un indice compris entre 1 et 9."
     for j in range(1, len(x)+1):
         for h in range(1, len(x)+1):
             k = 3 * ((j - 1)//3) + ((h - 1)//3) + 1
@@ -123,7 +115,6 @@ def ajouter(x, i, j, v):
 
 print(region(grille_2, 9))
 
-print(unique(grille_2))
 print(colonne(grille_2, 0))
 
 ajouter(grille_1, 9, 9, 6)   # check le if indice compris entre 1 et 9
@@ -132,28 +123,31 @@ print(unique(ligne(grille_2, 1)))
 
 
 def verifier(x):
-    for i in range(1, len(x)):
-        for j in range(1, len(x)):
+    for i in range(1, len(x)+1):
+        for j in range(1, len(x)+1):
             k = 3 * ((j - 1)//3) + ((i - 1)//3) + 1
-            print(unique(ligne(x, i)))
+            # print(unique(ligne(x, i)))
             if unique(ligne(x, i)) or unique(colonne(x, j)) or unique(region(x, k)):
-                print(unique(ligne(x, i)))
-                print("bite")
+                # print(unique(ligne(x, i)))
+                pass
             else:
                 return False
     return True
 
 
+# print(verifier(grille_2))
+
+# ajouter(grille_1)
 print(verifier(grille_2))
 
+def jouer(x):
+    while verifier(x):
+        i = int(input("Veuillez rentrer la ligne :"))
+        j = int(input("veuillez rentrer la colonne:"))
+        v = int(input("Veuillez rentrer la valeur a inserer:"))
+        ajouter(x, i, j, v)
+        afficher(x)
+# est-ce qu'il faut faire verif a chaque fois
 
-
-
-
-
-
-
-
-
-
-
+jouer(grille_1)
+ajouter(grille_0, 1, 1, 1)
