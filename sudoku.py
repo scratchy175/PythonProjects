@@ -43,6 +43,18 @@ grille_2 = [
     [1, 7, 8, 6, 5, 9, 3, 4, 2],
 ]
 
+grille_3 = [
+    [6, 2, 5, 8, 4, 3, 7, 9, 0],
+    [7, 9, 0, 0, 0, 5, 4, 8, 0],
+    [4, 8, 3, 9, 7, 1, 6, 2, 0],
+    [8, 1, 4, 5, 9, 7, 2, 3, 0],
+    [2, 3, 6, 1, 8, 4, 9, 5, 0],
+    [0, 5, 7, 3, 2, 6, 8, 1, 0],
+    [0, 0, 0, 4, 3, 2, 1, 7, 0],
+    [0, 0, 0, 7, 1, 8, 5, 6, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+]
+
 """
 Les deux fonctions ci-dessous sont données à titre d'exemple.  Le
 reste est à programmer à la suite de ces fonctions.
@@ -102,7 +114,7 @@ def region(x, i):
 def ajouter(x, i, j, v):
     tmp = x[i-1][j-1]
     x[i-1][j-1] = v
-    k = 3 * ((j - 1)//3) + ((i - 1)//3) + 1
+    k = 3 * ((i - 1)//3) + ((j - 1)//3) + 1 #j la a place de i
     if unique(ligne(x, i)) and unique(colonne(x, j)) and unique(region(x, k)):
         # x[i-1][j-1] = v
         print("valeur correcte")
@@ -125,9 +137,9 @@ print(unique(ligne(grille_2, 1)))
 def verifier(x):
     for i in range(1, len(x)+1):
         for j in range(1, len(x)+1):
-            k = 3 * ((j - 1)//3) + ((i - 1)//3) + 1
+            k = 3 * ((i - 1)//3) + ((j - 1)//3) + 1    #j la a place de i
             # print(unique(ligne(x, i)))
-            if unique(ligne(x, i)) or unique(colonne(x, j)) or unique(region(x, k)):
+            if unique(ligne(x, i)) and unique(colonne(x, j)) and unique(region(x, k)):       # a verif si ca marche toujours avec les and au lieu des or 
                 # print(unique(ligne(x, i)))
                 pass
             else:
@@ -149,5 +161,63 @@ def jouer(x):
         afficher(x)
 # est-ce qu'il faut faire verif a chaque fois
 
-jouer(grille_1)
-ajouter(grille_0, 1, 1, 1)
+# jouer(grille_1)
+# ajouter(grille_0, 1, 1, 1)
+
+
+def solution(x):
+    dico = {d: [] for d in range(10)}
+
+    for i in range(1,len(x)+1):
+        for j in range(1,len(x)+1):
+            k = 3 * ((i - 1)//3) + ((j - 1)//3) + 1
+            if x[i-1][j-1] == 0:     # changer ca
+                tmp = []
+                for y in range(1, 10):  # changer et pas mettre le 0
+
+                    if y not in ligne(x, i) and y not in colonne(x, j) and y not in region(x, k):
+                        tmp.append(y)
+                        
+                #sstoker dans le dico TUPLE   
+                dico[len(tmp)] = (i, j, tmp)    # FAUX
+            
+    return dico
+
+# il faut in in ou not in et exclure les valeurs deja presentes dans la ligne colonne region puis ajouter au dico sous forme de tuples 
+#il fautr verif que le ligne colonne region n'est pas pleine avec la fonction unique 
+# Si les trois unique retournent true alors la valeur il faut la mettre dans une list ou quelque part
+
+# ou alors if x[i][j] in ligne colonne et region alors la tej de la list
+
+
+#rajouter des comprehension de liste
+
+
+def resoudre(x):
+    l = list(solution(x).values())
+    pass
+
+
+l = (solution(grille_3).values())
+lst = list(l)
+print(lst)
+
+
+a_dictionary = {"a": (1,1,[1,1]), "b": (2,2,2)}
+a_dictionary["3"] = (1,1,2)
+a_dictionary["3"] = (2,1,2)
+print(a_dictionary)
+
+values = a_dictionary.values()
+
+values_list = list(values)
+
+print(values_list)
+
+
+
+print(solution(grille_3))
+print("drezf")
+
+liste = [(1, 2, [1, 2])]
+print(liste)
