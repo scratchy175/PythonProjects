@@ -7,6 +7,7 @@ stades d'avancement: grille_0 est vide, grille_1 semi-remplie et
 grille_2 entièrement remplie.
 """
 
+
 grille_0 = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -177,9 +178,8 @@ def solution(x):
 
                     if y not in ligne(x, i) and y not in colonne(x, j) and y not in region(x, k):
                         tmp.append(y)
-                        
-                #sstoker dans le dico TUPLE   
-                dico[len(tmp)].append((i, j, tmp))    # FAUX
+                         
+                dico[len(tmp)].append((i, j, tmp)) 
             
     return dico
 
@@ -192,11 +192,14 @@ def solution(x):
 
 #rajouter des comprehension de liste
 
-"""""
-def resoudre(x):
-    l = list(solution(x).values())
-    pass
 
+def resoudre(x):
+    l = [y for x in solution(grille_3).values()[x]]
+    return l
+
+# est-ce que la liste l doit etre du type l[i] renvoie une liste de tuples ou renvoie juste un tuple 
+# en utilisant comphrehension de liste 
+# pour les conditions d'arret 
 
 l = (solution(grille_3).values())
 lst = list(l)
@@ -220,5 +223,13 @@ print(solution(grille_3))
 
 liste = [(1, 2, [1, 2])]
 print(liste)
-"""
 print(solution(grille_3).values())
+print(resoudre(grille_3))
+print(lst[2])
+
+print(region(grille_2, 1))
+print(solution(grille_3).get(1))
+print(solution(grille_3).get(1)[1]) #faut faire un truc dans ce style
+
+
+print(resoudre(grille_3))
