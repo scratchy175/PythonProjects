@@ -179,7 +179,7 @@ def solution(x):
                         tmp.append(y)
                         
                 #sstoker dans le dico TUPLE   
-                dico[len(tmp)] = (i, j, tmp)    # FAUX
+                dico[len(tmp)].append((i, j, tmp))    # FAUX
             
     return dico
 
@@ -192,7 +192,7 @@ def solution(x):
 
 #rajouter des comprehension de liste
 
-
+"""""
 def resoudre(x):
     l = list(solution(x).values())
     pass
@@ -217,7 +217,8 @@ print(values_list)
 
 
 print(solution(grille_3))
-print("drezf")
 
 liste = [(1, 2, [1, 2])]
 print(liste)
+"""
+print(solution(grille_3).values())
