@@ -124,17 +124,6 @@ def ajouter(x, i, j, v):
         print("l'ajout est interdit")
     
 
-
-
-print(region(grille_2, 9))
-
-print(colonne(grille_2, 0))
-
-ajouter(grille_1, 9, 9, 6)   # check le if indice compris entre 1 et 9
-afficher(grille_1)
-print(unique(ligne(grille_2, 1)))
-
-
 def verifier(x):
     for i in range(1, len(x)+1):
         for j in range(1, len(x)+1):
@@ -148,10 +137,6 @@ def verifier(x):
     return True
 
 
-# print(verifier(grille_2))
-
-# ajouter(grille_1)
-print(verifier(grille_2))
 
 def jouer(x):
     while verifier(x):
@@ -194,42 +179,20 @@ def solution(x):
 
 
 def resoudre(x):
-    l = [y for x in solution(grille_3).values()[x]]
+    # l = [(x,y) for x in solution(grille_3).values()]
+
+
+        # l = [y for x in solution(grille_3).values()[x]]
     return l
 
 # est-ce que la liste l doit etre du type l[i] renvoie une liste de tuples ou renvoie juste un tuple 
 # en utilisant comphrehension de liste 
 # pour les conditions d'arret 
 
-l = (solution(grille_3).values())
-lst = list(l)
-print(lst)
 
+# print(resoudre(grille_3))
 
-a_dictionary = {"a": (1,1,[1,1]), "b": (2,2,2)}
-a_dictionary["3"] = (1,1,2)
-a_dictionary["3"] = (2,1,2)
-print(a_dictionary)
-
-values = a_dictionary.values()
-
-values_list = list(values)
-
-print(values_list)
-
-
-
-print(solution(grille_3))
-
-liste = [(1, 2, [1, 2])]
-print(liste)
-print(solution(grille_3).values())
-print(resoudre(grille_3))
-print(lst[2])
-
-print(region(grille_2, 1))
-print(solution(grille_3).get(1))
-print(solution(grille_3).get(1)[1]) #faut faire un truc dans ce style
-
-
-print(resoudre(grille_3))
+l = []
+test = solution(grille_3)
+[l.append(test[z][f]) for z in range(len(test)) for f in range(len(test[z]))]
+print(l)
