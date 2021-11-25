@@ -6,7 +6,7 @@ Elles représentent toutes des grilles de Sudoku valides à divers
 stades d'avancement: grille_0 est vide, grille_1 semi-remplie et
 grille_2 entièrement remplie.
 """
-
+import time
 
 grille_0 = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -54,6 +54,17 @@ grille_3 = [
     [0, 0, 0, 4, 3, 2, 1, 7, 0],
     [0, 0, 0, 7, 1, 8, 5, 6, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+]
+grille_4 = [
+    [6, 2, 5, 8, 4, 3, 7, 9, 1],
+    [7, 9, 1, 2, 6, 5, 4, 8, 3],
+    [4, 8, 3, 9, 7, 1, 6, 2, 5],
+    [8, 1, 4, 5, 9, 7, 2, 3, 6],
+    [2, 3, 6, 1, 8, 4, 9, 5, 7],
+    [9, 5, 7, 3, 2, 6, 8, 1, 4],
+    [5, 6, 9, 4, 3, 2, 1, 7, 8],
+    [3, 1, 2, 7, 1, 8, 5, 6, 9],
+    [0, 7, 8, 6, 5, 9, 3, 4, 2],
 ]
 
 """
@@ -179,11 +190,23 @@ def solution(x):
 
 
 def resoudre(x):
-    l = [list(solution((grille_3)).values())[i][j] for i in range(len(solution(grille_3))) for j in range(len(solution(grille_3)[i]))]
+    l = [list(solution((x)).values())[i][j] for i in range(len(solution(x))) for j in range(len(solution(x)[i]))]
+    if solution(x)[0]:
+        return False
+    if not l:
+        return x
+    for i in range(len(l)):
+        for j in range(len(l[i][2])):
+            x[l[i][0]-1][l[i][1]-1] = l[i][2][j]
+            if resoudre(x):
+                return True         # je pas quoi mettre ici
+            else:
+                x[l[i][0]-1][l[i][1]-1] = 0
+        return False
+
 
 
         # l = [y for x in solution(grille_3).values()[x]]
-    return l
 
 # est-ce que la liste l doit etre du type l[i] renvoie une liste de tuples ou renvoie juste un tuple 
 # en utilisant comphrehension de liste 
@@ -195,7 +218,26 @@ def resoudre(x):
 l = []
 # [l.append(test[z][f]) for z in range(len(test)) for f in range(len(test[z]))]
 # print(l)
-# l = [list(solution((grille_3)).values())[i][j] for i in range(len(solution(grille_3))) for j in range(len(solution(grille_3)[i]))]
-l = [solution(grille_3).values()[i][j] for i in range(len(solution(grille_3))) for j in range(len(solution(grille_3)[i]))]
+l = [list(solution((grille_3)).values())[i][j] for i in range(len(solution(grille_3))) for j in range(len(solution(grille_3)[i]))]
 
-print(l[0])
+
+# print(resoudre(grille_3))
+print(solution(grille_4)[0])
+
+for i in l:
+    pass
+
+print(l[15][2])
+print(len(l[15][2]))
+
+resoudre(grille_0)
+afficher(grille_0)
+print(verifier(grille_0))
+"""
+for i in range(len(l)):
+        for j in range(len(l[i][2])):
+            print(l[i][0]-1)
+            print(l[i][1]-1)
+            print(l)
+            time.sleep(10)
+"""
