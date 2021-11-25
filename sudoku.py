@@ -179,7 +179,7 @@ def solution(x):
 
 
 def resoudre(x):
-    # l = [(x,y) for x in solution(grille_3).values()]
+    l = [list(solution((grille_3)).values())[i][j] for i in range(len(solution(grille_3))) for j in range(len(solution(grille_3)[i]))]
 
 
         # l = [y for x in solution(grille_3).values()[x]]
@@ -193,6 +193,9 @@ def resoudre(x):
 # print(resoudre(grille_3))
 
 l = []
-test = solution(grille_3)
-[l.append(test[z][f]) for z in range(len(test)) for f in range(len(test[z]))]
-print(l)
+# [l.append(test[z][f]) for z in range(len(test)) for f in range(len(test[z]))]
+# print(l)
+# l = [list(solution((grille_3)).values())[i][j] for i in range(len(solution(grille_3))) for j in range(len(solution(grille_3)[i]))]
+l = [solution(grille_3).values()[i][j] for i in range(len(solution(grille_3))) for j in range(len(solution(grille_3)[i]))]
+
+print(l[0])
