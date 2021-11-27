@@ -7,7 +7,8 @@ stades d'avancement: grille_0 est vide, grille_1 semi-remplie et
 grille_2 entièrement remplie.
 """
 from time import time
-from random import shuffle
+from random import randint, shuffle
+
 
 
 grille_0 = [
@@ -66,7 +67,7 @@ grille_4 = [
     [9, 5, 7, 3, 2, 6, 8, 1, 4],
     [5, 6, 9, 4, 3, 2, 1, 7, 8],
     [3, 1, 2, 7, 1, 8, 5, 6, 9],
-    [0, 7, 8, 6, 5, 9, 3, 4, 0],
+    [5, 7, 8, 6, 5, 9, 3, 4, 5],
 ]
 
 """
@@ -140,13 +141,10 @@ def ajouter(x, i, j, v):
 def verifier(x):
     for i in range(1, len(x)+1):
         for j in range(1, len(x)+1):
-            k = 3 * ((i - 1)//3) + ((j - 1)//3) + 1    #j la a place de i
-            if unique(ligne(x, i)) and unique(colonne(x, j)) and unique(region(x, k)):       # a verif si ca marche toujours avec les and au lieu des or 
-                pass
-            else:
-                return False
+            k = 3 * ((i - 1)//3) + ((j - 1)//3) + 1
+            if not unique(ligne(x, i)) and not unique(colonne(x, j)) and not unique(region(x, k)):
+                return False          
     return True
-
 
 
 def jouer(x):
@@ -156,10 +154,6 @@ def jouer(x):
         v = int(input("Veuillez rentrer la valeur a inserer:"))
         ajouter(x, i, j, v)
         afficher(x)
-# est-ce qu'il faut faire verif a chaque fois
-
-# jouer(grille_1)
-# ajouter(grille_0, 1, 1, 1)
 
 
 def solution(x):
@@ -230,21 +224,30 @@ grille_x = grille_0 # choisir la grille
 
 start_time = time()
 # resoudre(grille_x)
-generer(grille_x)
-afficher(grille_x)
+# generer(grille_x)
+# afficher(grille_x)
 print(verifier(grille_x))
 print("La grille à été généré en {} secondes".format('%.3f'%(time() - start_time)))
 
-"""
-l = [list(solution((grille_x)).values())[i][j] for i in range(len(solution(grille_x))) for j in range(len(solution(grille_x)[i]))]
-print(l)
-shuffle(l)
-print(l)
+def nouvelle(x, lvl):
+    val = 0
+    k = 0
+    if lvl == 1:
+        val = 45
+    if lvl == 2:
+        val = 55
+    if lvl == 3:
+        val = 64
+    generer(x)
+    while k < val:
+        i = randint(0,8)
+        j = randint(0,8)
+        if x[i][j] != 0:
+            x[i][j] = 0
+            k += 1     
+    return x
 
-l = [list(solution((grille_x)).values())[i][j] for i in range(len(solution(grille_x))) for j in range(len(solution(grille_x)[i]))]
-for i in range(len(l)):
-    s = shuffle(l[i][2])
 
-print(l)
-print(l[0][2])
-"""
+(nouvelle(grille_x, 1))
+print("La grille à été généré en {} secondes".format('%.3f'%(time() - start_time)))
+jouer(grille_x)
