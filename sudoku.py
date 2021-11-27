@@ -59,15 +59,15 @@ grille_3 = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
 ]
 grille_4 = [
-    [6, 2, 5, 0, 4, 3, 0, 9, 1],
-    [7, 9, 1, 2, 6, 5, 7, 8, 3],
-    [4, 8, 3, 8, 7, 1, 6, 2, 5],
+    [0, 2, 5, 8, 4, 3, 7, 9, 1],
+    [7, 9, 1, 2, 6, 5, 4, 8, 3],
+    [4, 8, 3, 9, 7, 1, 6, 2, 5],
     [8, 1, 4, 5, 9, 7, 2, 3, 6],
     [2, 3, 6, 1, 8, 4, 9, 5, 7],
     [9, 5, 7, 3, 2, 6, 8, 1, 4],
     [5, 6, 9, 4, 3, 2, 1, 7, 8],
-    [3, 1, 2, 7, 1, 8, 5, 6, 9],
-    [5, 7, 8, 6, 5, 9, 3, 4, 5],
+    [3, 4, 2, 7, 1, 8, 5, 6, 9],
+    [1, 7, 8, 6, 5, 9, 3, 4, 0],
 ]
 
 """
@@ -108,7 +108,6 @@ def unique(x):
                 return False
     return True
 
-
 def colonne(x, i):
     col = []
     for j in range(len(x)):
@@ -126,12 +125,14 @@ def region(x, i):
     return reg
 
 
+
+
+
 def ajouter(x, i, j, v):
     tmp = x[i-1][j-1]
     x[i-1][j-1] = v
-    k = 3 * ((i - 1)//3) + ((j - 1)//3) + 1 #j la a place de i
+    k = 3 * ((i - 1)//3) + ((j - 1)//3) + 1
     if unique(ligne(x, i)) and unique(colonne(x, j)) and unique(region(x, k)):
-        # x[i-1][j-1] = v
         print("valeur correcte")
     else:
         x[i-1][j-1] = tmp
@@ -250,4 +251,4 @@ def nouvelle(x, lvl):
 
 (nouvelle(grille_x, 1))
 print("La grille à été généré en {} secondes".format('%.3f'%(time() - start_time)))
-jouer(grille_x)
+ajouter(grille_1, 1, 1, 7)
