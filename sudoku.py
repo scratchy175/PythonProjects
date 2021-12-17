@@ -191,8 +191,8 @@ def resoudre(x):
 
 def generer(x):
     sol = solutions(x)
-    l = [list(sol.values())[i][j] for i in range(len(sol)) for j in range(len(sol[i]))]  
-
+    l = [list(sol.values())[i][j] for i in range(len(sol)) for j in range(len(sol[i]))]
+    
     if sol[0]:
         return False
     if not l:
@@ -208,7 +208,6 @@ def generer(x):
         return False
 
 
-
 # Fonction avec nombre de case aléatoire à enlever > à 17
 def nouvelle(x):
     k = 0
@@ -219,8 +218,9 @@ def nouvelle(x):
         if x[i][j] != 0:
             x[i][j] = 0
             k += 1  
+    afficher(x)
     print("Nouvelle grille généré avec succès !")   
-    return x
+    
     
 
 # Petite variante de la fonction précedente avec 3 niveaux de difficulté
@@ -249,11 +249,11 @@ def nouvelle(x, lvl):
 grille_x = grille_0
 
 ## Appel fonction de test
+
 # print(solution(grille_x))
-# print(verifier(grille_x))
+# verifier(grille_x)
 # jouer(grille_x)
 # resoudre(grille_x)
-generer(grille_x)
-nouvelle(grille_x)
-afficher(grille_x)
-# jouer(grille_x)
+# generer(grille_x)
+# nouvelle(grille_x)
+#afficher(grille_x)
