@@ -107,11 +107,10 @@ def unique(x):
                 return False
     return True
 
+
 def colonne(x, i):
     col = []
-    for j in range(len(x)):
-        col.append(x[j][i-1])
-    return col
+    return [x[j][i-1] for j in range(len(x))]
 
 
 def region(x, i):
@@ -159,7 +158,7 @@ def jouer(x):
     print("Bravo ! Vous avez résolu la grille de sudoku !")
 
 
-def solution(x):
+def solutions(x):
     dico = {d: [] for d in range(10)}
     for i in range(1,len(x)+1):
         for j in range(1,len(x)+1):
@@ -169,12 +168,12 @@ def solution(x):
                 for y in range(1, 10):
                     if y not in ligne(x, i) and y not in colonne(x, j) and y not in region(x, k):
                         tmp.append(y)    
-                dico[len(tmp)].append((i, j, tmp)) 
+                dico[len(tmp)].append((i, j, tmp))
     return dico
 
 
 def resoudre(x):
-    sol = solution(x)
+    sol = solutions(x)
     l = [list(sol.values())[i][j] for i in range(len(sol)) for j in range(len(sol[i]))]   
     if sol[0]:
         return False
@@ -191,8 +190,9 @@ def resoudre(x):
 
 
 def generer(x):
-    sol = solution(x)
-    l = [list(sol.values())[i][j] for i in range(len(sol)) for j in range(len(sol[i]))]   
+    sol = solutions(x)
+    l = [list(sol.values())[i][j] for i in range(len(sol)) for j in range(len(sol[i]))]  
+
     if sol[0]:
         return False
     if not l:
@@ -205,10 +205,11 @@ def generer(x):
                 return x
             else:
                 x[l[i][0]-1][l[i][1]-1] = 0
-        return False 
+        return False
 
 
-# Fonction avec nombre de case aléatoire à enlever >17
+
+# Fonction avec nombre de case aléatoire à enlever > à 17
 def nouvelle(x):
     k = 0
     generer(x)
@@ -245,14 +246,14 @@ def nouvelle(x, lvl):
 
 
 # choix grille à tester
-grille_x = grille_3 
+grille_x = grille_0
 
 ## Appel fonction de test
-
+# print(solution(grille_x))
 # print(verifier(grille_x))
-# jouer(grille_4)
+# jouer(grille_x)
 # resoudre(grille_x)
-# generer(grille_x)
-# nouvelle(grille_x)
-# afficher(grille_x)
-
+generer(grille_x)
+nouvelle(grille_x)
+afficher(grille_x)
+# jouer(grille_x)
